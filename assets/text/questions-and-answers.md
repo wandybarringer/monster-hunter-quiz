@@ -179,3 +179,15 @@ B. Sleep-inducing gas attacks ✔️
 C. Changing gender mid-hunt
 
 D. Summoning smaller bird wyverns
+
+16. (???)
+
+Who directed the Monster Hunter Movie (2020)?
+
+A. Paul Thomas Anderson
+
+B. Uwe Boll
+
+C. Wes Anderson
+
+D. Paul W. S. Anderson ✔️

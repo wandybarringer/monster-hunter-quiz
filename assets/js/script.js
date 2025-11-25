@@ -88,45 +88,46 @@ var answerAEl = document.querySelector('#answer-a');
 var answerBEl = document.querySelector('#answer-b');
 var answerCEl = document.querySelector('#answer-c');
 var answerDEl = document.querySelector('#answer-d');
+var startPageEl = document.querySelector('#start-page');
 var questionsAndAnswersEl = document.querySelector('#questions-and-answers');
-var timeLeft = 120;
+var nameEntryEl = document.querySelector('#name-entry');
+var scoreBoardEl = document.querySelector('#score-board');
+
+var timeLeft = 10;
 var currentQuestion;
 var removedQuestions;
+var questionCount = 0;
 
+// Starts game
 function startGame() {
   startBtnEl.addEventListener('click', function () {
-    console.log('Clicked start!');
     loadQuestion();
+    startPageEl.setAttribute('class', 'hide-content');
+    questionsAndAnswersEl.setAttribute('class', 'show-content');
     var timerInterval = setInterval(function () {
       timeLeft--;
       timerEl.textContent = timeLeft;
-      if (timeLeft === 0) {
+      if (timeLeft <= 0) {
         clearInterval(timerInterval);
+        timeLeft = 0;
+        timerEl.textContent = timeLeft;
       }
     }, 1000);
   });
   checkAnswer();
 }
 
-function loadQuestion() {
-  index = Math.floor(Math.random() * questions.length);
-  currentQuestion = questions[index];
-  removedQuestions = questions.splice(index, 1);
-  questionEl.textContent = currentQuestion.question;
-  answerAEl.textContent = currentQuestion.choices[0];
-  answerBEl.textContent = currentQuestion.choices[1];
-  answerCEl.textContent = currentQuestion.choices[2];
-  answerDEl.textContent = currentQuestion.choices[3];
-}
-// function checkAnswer()
-// called when answer selected
-// checks if right or wrong
-// deducts from timer if wrong
-// indicate if wrong
-// load next question
+// Called when answer selected
+// Checks if right or wrong
+// Deducts from timer if wrong
+// Indicate if wrong
+// Load next question
 function checkAnswer() {
   questionsAndAnswersEl.addEventListener('click', function (event) {
     var element = event.target;
+    questionCount++;
+    console.log(questionCount);
+    // TODO: Disable all buttons after one is clicked, then re-enable after question load
     if (element.textContent === currentQuestion.correctAnswer) {
       questionEl.textContent = 'CORRECT!';
       setTimeout(function () {
@@ -139,17 +140,34 @@ function checkAnswer() {
         loadQuestion();
       }, 750);
     }
+    endGame();
   });
 }
 
-// function nextQuestion()
-// loads next question
+// Loads next question
+function loadQuestion() {
+  index = Math.floor(Math.random() * questions.length);
+  currentQuestion = questions[index];
+  removedQuestions = questions.splice(index, 1);
+  questionEl.textContent = currentQuestion.question;
+  answerAEl.textContent = currentQuestion.choices[0];
+  answerBEl.textContent = currentQuestion.choices[1];
+  answerCEl.textContent = currentQuestion.choices[2];
+  answerDEl.textContent = currentQuestion.choices[3];
+}
 
-// function endGame()
-// triggered by last question being answered or timer hitting zero
-// prompts for initials
-// saves high score
-// shows high scores
-// play again button
+// Ends quiz
+// Triggered by last question being answered or timer hitting zero
+// Prompts for name
+// Saves score
+// Shows high scoreboard
+// Play again button
+function endGame() {
+  if (questionCount === 10 || timeLeft === 0) {
+    questionEl.textContent = 'FINISHED!';
+    questionsAndAnswersEl.setAttribute('class', 'hide-content');
+    nameEntryEl.setAttribute('class', 'show-content');
+  }
+}
 
 startGame();
