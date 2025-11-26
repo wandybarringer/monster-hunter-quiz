@@ -1,3 +1,9 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 @font-face {
   font-family: mhFont;
   src: url(../text/MonsterHunter.ttf);
@@ -8,16 +14,63 @@
   src: url(../text/Monsterhunter02.ttf);
 }
 
-body {
-  background: #e6dcc3;
+@font-face {
+  font-family: 'Helvetica Rounded';
+  src: url(../text/helvetica-rounded.otf);
 }
 
+:root {
+  --primary-background: #e6dcc3;
+  --secondary-background: #472a00;
+  --secondary-background-gradient: #613b02;
+  --primary-text: #0c4f57;
+  --secondary-text: #1e1d1f;
+  --main-buttons: #f4d78e;
+  --main-buttons-gradient: #f7f2e8;
+  --main-buttons-border: #c19550;
+  --main-buttons-hover: #fedd51;
+  --main-buttons-hover-gradient: #f7fbeb;
+  --main-buttons-hover-border: #f19556;
+}
+
+body {
+  background: var(--primary-background);
+  color: var(--secondary-text);
+  font-family: 'Helvetica Rounded', Helvetica, sans-serif;
+}
+
+/* TODO: needs to be a little more readable? */
 h1 {
   font-family: mhFont;
   font-size: 5rem;
-  color: #0c4f57;
+  color: var(--primary-text);
   text-align: center;
-  text-shadow: 0px 0px 50px #ffffff, 4px 4px 2px #000000;
+  text-shadow: 4px 4px 2px #616060;
+  -webkit-text-stroke: 0.3px var(--secondary-text);
+  margin-block: 70px;
+}
+
+h2 {
+  background: var(--main-buttons-border);
+  display: inline;
+  padding: 10px;
+  font-size: 2rem;
+  color: var(--secondary-text);
+  -webkit-text-stroke: 0.5px var(--primary-background);
+  border: 3px solid var(--secondary-background);
+  border-radius: 10px;
+}
+
+p {
+  background: #b01028;
+  font-size: 2rem;
+  text-align: center;
+  color: var(--primary-background);
+  padding: 10px;
+  inline-size: 50%;
+  -webkit-text-stroke: 0.5px var(--secondary-text);
+  border: 3px solid var(--secondary-background);
+  border-radius: 10px;
 }
 
 img {
@@ -25,39 +78,113 @@ img {
   display: block;
 }
 
-/* TODO: better button styling */
+.btn-border-wrapper {
+  transform: scale(1);
+  border: 2px solid var(--secondary-background);
+  background: var(--secondary-background);
+  border-radius: 15px;
+  display: inline-flex;
+}
+
+/* TODO: pseudo element to the bottom interior with spikes like in button-reference image */
 button {
   all: unset;
   cursor: pointer;
-  background-color: #b01028;
-  color: #e6dcc3;
   padding: 15px;
+  font-size: 1.5rem;
+  background: linear-gradient(to top, var(--main-buttons) 75%, var(--main-buttons-gradient) 100%);
+  color: var(--secondary-text);
+  border-radius: 15px;
+  border: 3px solid var(--main-buttons-border);
+  -webkit-text-stroke: 1px var(--primary-background);
+  width: 100%;
+}
+
+button:hover {
+  background: linear-gradient(to top, var(--main-buttons-hover) 75%, var(--main-buttons-hover-gradient) 100%);
+  border: 3px solid var(--main-buttons-hover-border);
+}
+
+.btn-border-wrapper:hover {
+  border: 2px solid var(--main-buttons-hover-border);
+  background: var(--main-buttons-hover-border);
+}
+
+#start-btn {
   font-family: mhFont2;
+  -webkit-text-stroke: 0.5px var(--primary-background);
   font-size: 4rem;
-  border-radius: 30px;
-  border: 5px solid #6b0a19;
 }
 
 .secondary-bg {
-  background: #cba053;
-  padding: 100px;
-  border: 3px solid #0c4f57;
+  background: repeating-linear-gradient(to right, var(--secondary-background) 0px, var(--secondary-background) 5px, var(--secondary-background-gradient) 8px, var(--secondary-background-gradient) 100px);
+  inline-size: 100%;
+  border: 3px solid var(--secondary-background);
   border-radius: 10px;
 }
 
 .extra-bg {
-  background: #d6caac;
+  background: var(--main-buttons-border);
   margin-inline: 150px;
   padding: 10px;
-  border: 5px solid #0c4f57;
+  border: 5px solid var(--secondary-background);
   border-radius: 10px;
 }
 
 .flexbox {
   display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 20px;
+  gap: 1rem;
+}
+
+.grid-el {
+  background: linear-gradient(to top, var(--main-buttons-hover) 75%, var(--main-buttons-hover-gradient) 100%);
+  border: 3px solid var(--main-buttons-hover-border);
+  border-radius: 10px;
+  display: flex;
   justify-content: space-around;
   align-items: center;
-  gap: 100px;
+  gap: 200px;
+  position: relative;
+  inline-size: 75%;
+  padding: 10px;
+}
+
+#correct-wrong-img-01,
+#correct-wrong-img-02 {
+  block-size: 100%;
+  display: inline;
+  position: absolute;
+}
+
+#correct-wrong-img-01 {
+  left: 0;
+}
+
+#correct-wrong-img-02 {
+  right: 0;
+}
+
+h3 {
+  font-size: 2rem;
+  -webkit-text-stroke: 0.3px var(--main-buttons-hover-border);
+  font-family: mhFont2;
+}
+
+#timer {
+  grid-column: 2;
+  justify-self: end;
+}
+
+#question {
+  grid-column: span 2;
 }
 
 .hide-content {

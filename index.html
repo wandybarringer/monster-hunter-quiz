@@ -13,18 +13,26 @@
     <main>
       <div class="extra-bg">
         <div class="secondary-bg">
+          <!-- ! re-add class flexbox -->
           <div id="start-page" class="flexbox">
-            <button id="start-btn">START</button>
+            <div class="btn-border-wrapper">
+              <button id="start-btn">BEGIN</button>
+            </div>
             <img src="assets/images/palico.png" alt="A cartoon Palico face." />
           </div>
 
           <div id="questions-and-answers" class="hide-content">
+            <div id="correct-wrong-container" class="hide-content">
+              <img id="correct-wrong-img-01" src="" alt="" />
+              <h3 id="correct-wrong" class="show-content"></h3>
+              <img id="correct-wrong-img-02" src="" alt="" />
+            </div>
             <p id="timer">Timer</p>
             <h2 id="question">Question</h2>
-            <button id="answer-a">Answer 1</button>
-            <button id="answer-b">Answer 2</button>
-            <button id="answer-c">Answer 3</button>
-            <button id="answer-d">Answer 4</button>
+            <div class="btn-border-wrapper"><button id="answer-b">Answer 2</button></div>
+            <div class="btn-border-wrapper"><button id="answer-a">Answer 1</button></div>
+            <div class="btn-border-wrapper"><button id="answer-c">Answer 3</button></div>
+            <div class="btn-border-wrapper"><button id="answer-d">Answer 4</button></div>
           </div>
 
           <div id="name-entry" class="hide-content">
@@ -32,7 +40,7 @@
             <form action="" id="score-form">
               <label for="name">Your Name:</label>
               <input type="text" id="name-input" />
-              <button type="submit">Submit</button>
+              <div class="btn-border-wrapper"><button type="submit">Submit</button></div>
             </form>
 
             <p id="error-message"></p>
@@ -41,7 +49,7 @@
           <div id="score-board" class="hide-content">
             <h2>Score Board</h2>
             <ol id="score-list"></ol>
-            <button>Play Again</button>
+            <div class="btn-border-wrapper"><button>Play Again</button></div>
           </div>
         </div>
       </div>

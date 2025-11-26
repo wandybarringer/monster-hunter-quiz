@@ -96,6 +96,10 @@ var scoreListEl = document.querySelector('#score-list');
 var scoreFormEl = document.querySelector('#score-form');
 var nameInputEl = document.querySelector('#name-input');
 var errorMsgEl = document.querySelector('#error-message');
+var correctWrongEl = document.querySelector('#correct-wrong');
+var correctWrongImg01El = document.querySelector('#correct-wrong-img-01');
+var correctWrongImg02El = document.querySelector('#correct-wrong-img-02');
+var correctWrongContainerEl = document.querySelector('#correct-wrong-container');
 
 var timeLeft = 120;
 var currentQuestion;
@@ -106,7 +110,7 @@ function startGame() {
   startBtnEl.addEventListener('click', function () {
     loadQuestion();
     startPageEl.setAttribute('class', 'hide-content');
-    questionsAndAnswersEl.setAttribute('class', 'show-content');
+    questionsAndAnswersEl.setAttribute('class', 'grid');
     var timerInterval = setInterval(function () {
       timeLeft--;
       timerEl.textContent = timeLeft;
@@ -128,15 +132,23 @@ function checkAnswer() {
     questionCount++;
     console.log(questionCount);
     if (element.textContent === currentQuestion.correctAnswer) {
-      questionEl.textContent = 'CORRECT!';
+      correctWrongContainerEl.setAttribute('class', 'grid-el');
+      correctWrongImg01El.setAttribute('src', 'assets/images/HappyFelyne.png');
+      correctWrongImg02El.setAttribute('src', 'assets/images/HappyFelyne.png');
+      correctWrongEl.textContent = 'CORRECT!';
       setTimeout(function () {
+        correctWrongContainerEl.setAttribute('class', 'hide-content');
         loadQuestion();
         endGame();
       }, 750);
     } else {
-      questionEl.textContent = 'WRONG!';
+      correctWrongContainerEl.setAttribute('class', 'grid-el');
+      correctWrongImg01El.setAttribute('src', 'assets/images/KOdFelyne1.png');
+      correctWrongImg02El.setAttribute('src', 'assets/images/KOdFelyne1.png');
+      correctWrongEl.textContent = 'WRONG!';
       timeLeft -= 10;
       setTimeout(function () {
+        correctWrongContainerEl.setAttribute('class', 'hide-content');
         loadQuestion();
         endGame();
       }, 750);
