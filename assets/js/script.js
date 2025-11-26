@@ -97,7 +97,7 @@ var scoreFormEl = document.querySelector('#score-form');
 var nameInputEl = document.querySelector('#name-input');
 var errorMsgEl = document.querySelector('#error-message');
 
-var timeLeft = 10;
+var timeLeft = 120;
 var currentQuestion;
 var removedQuestions;
 var questionCount = 0;

@@ -1,3 +1,65 @@
+@font-face {
+  font-family: mhFont;
+  src: url(../text/MonsterHunter.ttf);
+}
+
+@font-face {
+  font-family: mhFont2;
+  src: url(../text/Monsterhunter02.ttf);
+}
+
+body {
+  background: #e6dcc3;
+}
+
+h1 {
+  font-family: mhFont;
+  font-size: 5rem;
+  color: #0c4f57;
+  text-align: center;
+  text-shadow: 0px 0px 50px #ffffff, 4px 4px 2px #000000;
+}
+
+img {
+  max-inline-size: 100%;
+  display: block;
+}
+
+/* TODO: better button styling */
+button {
+  all: unset;
+  cursor: pointer;
+  background-color: #b01028;
+  color: #e6dcc3;
+  padding: 15px;
+  font-family: mhFont2;
+  font-size: 4rem;
+  border-radius: 30px;
+  border: 5px solid #6b0a19;
+}
+
+.secondary-bg {
+  background: #cba053;
+  padding: 100px;
+  border: 3px solid #0c4f57;
+  border-radius: 10px;
+}
+
+.extra-bg {
+  background: #d6caac;
+  margin-inline: 150px;
+  padding: 10px;
+  border: 5px solid #0c4f57;
+  border-radius: 10px;
+}
+
+.flexbox {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 100px;
+}
+
 .hide-content {
   display: none;
 }

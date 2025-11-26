@@ -9,38 +9,40 @@
   <body>
     <header>
       <h1>Monster Hunter Quiz</h1>
-      <p id="timer">Timer</p>
     </header>
     <main>
-      <div class="grid-with-secondary-bg">
-        <div id="start-page">
-          <button id="start-btn">START</button>
-          <img src="assets/images/palico.png" alt="A cartoon Palico face." />
-        </div>
+      <div class="extra-bg">
+        <div class="secondary-bg">
+          <div id="start-page" class="flexbox">
+            <button id="start-btn">START</button>
+            <img src="assets/images/palico.png" alt="A cartoon Palico face." />
+          </div>
 
-        <div id="questions-and-answers" class="hide-content">
-          <h2 id="question">Question</h2>
-          <button id="answer-a">Answer 1</button>
-          <button id="answer-b">Answer 2</button>
-          <button id="answer-c">Answer 3</button>
-          <button id="answer-d">Answer 4</button>
-        </div>
+          <div id="questions-and-answers" class="hide-content">
+            <p id="timer">Timer</p>
+            <h2 id="question">Question</h2>
+            <button id="answer-a">Answer 1</button>
+            <button id="answer-b">Answer 2</button>
+            <button id="answer-c">Answer 3</button>
+            <button id="answer-d">Answer 4</button>
+          </div>
 
-        <div id="name-entry" class="hide-content">
-          <h2>Enter Your Name</h2>
-          <form action="" id="score-form">
-            <label for="name">Your Name:</label>
-            <input type="text" id="name-input" />
-            <button type="submit">Submit</button>
-          </form>
+          <div id="name-entry" class="hide-content">
+            <h2>Enter Your Name</h2>
+            <form action="" id="score-form">
+              <label for="name">Your Name:</label>
+              <input type="text" id="name-input" />
+              <button type="submit">Submit</button>
+            </form>
 
-          <p id="error-message"></p>
-        </div>
+            <p id="error-message"></p>
+          </div>
 
-        <div id="score-board" class="hide-content">
-          <h2>Score Board</h2>
-          <ol id="score-list"></ol>
-          <button>Play Again</button>
+          <div id="score-board" class="hide-content">
+            <h2>Score Board</h2>
+            <ol id="score-list"></ol>
+            <button>Play Again</button>
+          </div>
         </div>
       </div>
     </main>
