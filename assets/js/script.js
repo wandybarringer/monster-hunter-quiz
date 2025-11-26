@@ -57,7 +57,7 @@ var questions = [
   {
     question: 'What is Cephadrome’s larger and more aggressive desert-dwelling relative?',
     choices: ['Plesioth', 'Diablos', 'Cephalos', 'Nibelsnarf'],
-    correctAnswer: '',
+    correctAnswer: 'Nibelsnarf',
   },
   {
     question: 'Which monster was the first “Black Dragon” introduced in the series?',
@@ -92,13 +92,16 @@ var startPageEl = document.querySelector('#start-page');
 var questionsAndAnswersEl = document.querySelector('#questions-and-answers');
 var nameEntryEl = document.querySelector('#name-entry');
 var scoreBoardEl = document.querySelector('#score-board');
+var scoreListEl = document.querySelector('#score-list');
+var scoreFormEl = document.querySelector('#score-form');
+var nameInputEl = document.querySelector('#name-input');
+var errorMsgEl = document.querySelector('#error-message');
 
 var timeLeft = 10;
 var currentQuestion;
 var removedQuestions;
 var questionCount = 0;
 
-// Starts game
 function startGame() {
   startBtnEl.addEventListener('click', function () {
     loadQuestion();
@@ -111,40 +114,36 @@ function startGame() {
         clearInterval(timerInterval);
         timeLeft = 0;
         timerEl.textContent = timeLeft;
+        endGame();
       }
     }, 1000);
   });
   checkAnswer();
 }
 
-// Called when answer selected
-// Checks if right or wrong
-// Deducts from timer if wrong
-// Indicate if wrong
-// Load next question
+// TODO: Disable all buttons after one is clicked, then re-enable after question load
 function checkAnswer() {
   questionsAndAnswersEl.addEventListener('click', function (event) {
     var element = event.target;
     questionCount++;
     console.log(questionCount);
-    // TODO: Disable all buttons after one is clicked, then re-enable after question load
     if (element.textContent === currentQuestion.correctAnswer) {
       questionEl.textContent = 'CORRECT!';
       setTimeout(function () {
         loadQuestion();
+        endGame();
       }, 750);
     } else {
       questionEl.textContent = 'WRONG!';
       timeLeft -= 10;
       setTimeout(function () {
         loadQuestion();
+        endGame();
       }, 750);
     }
-    endGame();
   });
 }
 
-// Loads next question
 function loadQuestion() {
   index = Math.floor(Math.random() * questions.length);
   currentQuestion = questions[index];
@@ -156,18 +155,27 @@ function loadQuestion() {
   answerDEl.textContent = currentQuestion.choices[3];
 }
 
-// Ends quiz
-// Triggered by last question being answered or timer hitting zero
-// Prompts for name
-// Saves score
-// Shows high scoreboard
-// Play again button
+// TODO: play again button
+// TODO: save score to local storage
 function endGame() {
   if (questionCount === 10 || timeLeft === 0) {
     questionEl.textContent = 'FINISHED!';
     questionsAndAnswersEl.setAttribute('class', 'hide-content');
     nameEntryEl.setAttribute('class', 'show-content');
   }
+  scoreFormEl.addEventListener('submit', function (event) {
+    event.preventDefault();
+    var nameValue = nameInputEl.value;
+    if (nameValue === '') {
+      errorMsgEl.textContent = 'Please provide your name.';
+    } else {
+      var newScore = document.createElement('li');
+      newScore.textContent = nameValue + ' ' + timeLeft;
+      scoreListEl.appendChild(newScore);
+      nameEntryEl.setAttribute('class', 'hide-content');
+      scoreBoardEl.setAttribute('class', 'show-content');
+    }
+  });
 }
 
 startGame();

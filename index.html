@@ -28,16 +28,18 @@
 
         <div id="name-entry" class="hide-content">
           <h2>Enter Your Name</h2>
-          <form action="">
-            <label for="name">Your Name</label>
-            <input type="text" />
+          <form action="" id="score-form">
+            <label for="name">Your Name:</label>
+            <input type="text" id="name-input" />
+            <button type="submit">Submit</button>
           </form>
-          <button>Submit</button>
+
+          <p id="error-message"></p>
         </div>
 
         <div id="score-board" class="hide-content">
           <h2>Score Board</h2>
-          <ol></ol>
+          <ol id="score-list"></ol>
           <button>Play Again</button>
         </div>
       </div>
