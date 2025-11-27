@@ -135,11 +135,32 @@ button {
   -webkit-text-stroke: 1px var(--primary-background);
   width: 100%;
   text-align: center;
+  position: relative;
+  --spike-width: 20px;
+  --spike-height: 12px;
+}
+
+button::after {
+  content: '';
+  position: absolute;
+  inline-size: 100%;
+  block-size: var(--spike-height);
+  background: var(--main-buttons-border);
+  bottom: 0;
+  left: 0;
+  -webkit-mask-image: url('../svg-paths/svg-path.svg');
+  -webkit-mask-size: var(--spike-width) var(--spike-height);
+  transform: rotate(0.5turn);
+  border-radius: 15px;
 }
 
 button:hover {
   background: linear-gradient(to top, var(--main-buttons-hover) 75%, var(--main-buttons-hover-gradient) 100%);
   border: 3px solid var(--main-buttons-hover-border);
+}
+
+button:hover::after {
+  background: var(--main-buttons-hover-border);
 }
 
 .btn-border-wrapper:hover {
