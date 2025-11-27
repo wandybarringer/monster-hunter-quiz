@@ -39,10 +39,16 @@ body {
   font-family: 'Helvetica Rounded', Helvetica, sans-serif;
 }
 
+.wrapper {
+  max-inline-size: 1000px;
+  margin-inline: auto;
+}
+
 /* TODO: needs to be a little more readable? */
 h1 {
   font-family: mhFont;
   font-size: 5rem;
+  font-size: clamp(5vh, 5rem, 15vw);
   color: var(--primary-text);
   text-align: center;
   text-shadow: 4px 4px 2px #616060;
@@ -56,14 +62,15 @@ h2 {
   padding: 10px;
   font-size: 2rem;
   color: var(--secondary-text);
-  -webkit-text-stroke: 0.5px var(--primary-background);
+  -webkit-text-stroke: 0.3px var(--primary-background);
   border: 3px solid var(--secondary-background);
   border-radius: 10px;
+  text-align: center;
 }
 
 p {
   background: #b01028;
-  font-size: 2rem;
+  font-size: 5rem;
   text-align: center;
   color: var(--primary-background);
   padding: 10px;
@@ -76,6 +83,35 @@ p {
 img {
   max-inline-size: 100%;
   display: block;
+}
+
+form {
+  background: var(--main-buttons-border);
+  border-radius: 0 0 10px 10px;
+  border-inline: 5px solid var(--secondary-background);
+  border-block-end: 5px solid var(--secondary-background);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  inline-size: 100%;
+  block-size: 100%;
+  padding: 30px;
+  position: relative;
+  top: -3px;
+}
+
+input {
+  all: unset;
+  display: block;
+  background: var(--primary-background);
+  border: 2px solid var(--secondary-text);
+  border-radius: 10px;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+input:focus {
+  outline: none; /* Removes the default outline */
 }
 
 .btn-border-wrapper {
@@ -98,6 +134,7 @@ button {
   border: 3px solid var(--main-buttons-border);
   -webkit-text-stroke: 1px var(--primary-background);
   width: 100%;
+  text-align: center;
 }
 
 button:hover {
@@ -121,11 +158,13 @@ button:hover {
   inline-size: 100%;
   border: 3px solid var(--secondary-background);
   border-radius: 10px;
+  min-block-size: 60vh;
+  display: flex;
+  justify-content: center;
 }
 
 .extra-bg {
   background: var(--main-buttons-border);
-  margin-inline: 150px;
   padding: 10px;
   border: 5px solid var(--secondary-background);
   border-radius: 10px;
@@ -133,6 +172,7 @@ button:hover {
 
 .flexbox {
   display: flex;
+  flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
 }
@@ -140,8 +180,10 @@ button:hover {
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
   padding: 20px;
   gap: 1rem;
+  inline-size: 100%;
 }
 
 .grid-el {
@@ -155,6 +197,10 @@ button:hover {
   position: relative;
   inline-size: 75%;
   padding: 10px;
+}
+
+#correct-wrong-container {
+  inline-size: 100%;
 }
 
 #correct-wrong-img-01,
@@ -187,8 +233,49 @@ h3 {
   grid-column: span 2;
 }
 
+#submit-btn {
+  padding: 10px;
+  font-size: 1.2rem;
+}
+
+#error-message {
+  font-size: 1rem;
+}
+
+#score-card {
+  inline-size: 100%;
+  min-block-size: 40vh;
+  border: 3px solid var(--secondary-background);
+  border-radius: 10px;
+  background: var(--main-buttons-border);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 20px;
+}
+
+#score-card h2 {
+  border: none;
+  background: none;
+  top: 0px;
+  font-family: mhFont2;
+  -webkit-text-stroke: 0.1px var(--secondary-background);
+  font-size: 5rem;
+}
+
+ul {
+  list-style: none;
+  text-align: center;
+  font-size: 1.5rem;
+  color: var(--secondary-text);
+}
+
 .hide-content {
   display: none;
+}
+
+.visibility-hidden {
+  visibility: hidden;
 }
 
 .show-content {
