@@ -398,6 +398,8 @@ function handleAnswerClick(event) {
 
   var element = event.target;
 
+  element.blur();
+
   correctWrongContainerEl.classList.remove('visibility-hidden');
 
   setTimeout(function () {
@@ -493,7 +495,6 @@ function renderScores() {
   scores.sort(function (a, b) {
     return b.correct - a.correct;
   });
-  // var highlightID = highlightID || null;
   for (var i = 0; i < scores.length; i++) {
     var score = scores[i];
     var newScore = document.createElement('li');
@@ -503,7 +504,6 @@ function renderScores() {
     newScore.textContent = score.name + ' | ' + score.correct + ' correct | ' + score.incorrect + ' wrong';
     scoreListEl.appendChild(newScore);
   }
-  // highlightID = null;
 }
 
 function endGame() {
