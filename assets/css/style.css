@@ -47,37 +47,56 @@ body {
 /* TODO: needs to be a little more readable? */
 h1 {
   font-family: mhFont;
-  font-size: 5rem;
-  font-size: clamp(5vh, 5rem, 15vw);
+  font-size: 2.2rem;
   color: var(--primary-text);
   text-align: center;
   text-shadow: 4px 4px 2px #616060;
   -webkit-text-stroke: 0.3px var(--secondary-text);
-  margin-block: 70px;
+  margin-block-end: 30px;
+  margin-block-start: 5px;
+
+  @media screen and (width > 510px) {
+    font-size: 3rem;
+  }
+
+  @media screen and (width > 850px) {
+    font-size: 4rem;
+    margin-block-end: 70px;
+    margin-block-start: 20px;
+  }
 }
 
 h2 {
   background: var(--main-buttons-border);
   display: inline;
   padding: 10px;
-  font-size: 2rem;
+  font-size: 1.7rem;
   color: var(--secondary-text);
-  -webkit-text-stroke: 0.3px var(--primary-background);
+  -webkit-text-stroke: 0.25px var(--primary-background);
   border: 3px solid var(--secondary-background);
   border-radius: 10px;
   text-align: center;
+
+  @media screen and (width > 850px) {
+    font-size: 1.8rem;
+    -webkit-text-stroke: 0.3px var(--primary-background);
+  }
 }
 
 p {
   background: #b01028;
-  font-size: 5rem;
   text-align: center;
+  font-size: 2rem;
   color: var(--primary-background);
   padding: 10px;
   inline-size: 50%;
   -webkit-text-stroke: 0.5px var(--secondary-text);
   border: 3px solid var(--secondary-background);
   border-radius: 10px;
+
+  @media screen and (width > 850px) {
+    font-size: 5rem;
+  }
 }
 
 img {
@@ -87,17 +106,25 @@ img {
 
 form {
   background: var(--main-buttons-border);
-  border-radius: 0 0 10px 10px;
-  border-inline: 5px solid var(--secondary-background);
-  border-block-end: 5px solid var(--secondary-background);
+  border-radius: 10px;
+  border: 5px solid var(--secondary-background);
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: space-evenly;
   align-items: center;
-  inline-size: 100%;
-  block-size: 100%;
-  padding: 30px;
+  inline-size: 80%;
+  block-size: 200px;
+  padding: 10px;
   position: relative;
-  top: -3px;
+  gap: 20px;
+
+  @media screen and (width > 510px) {
+    padding: 30px;
+    inline-size: 100%;
+    flex-direction: row;
+    top: -3px;
+    justify-content: space-around;
+  }
 }
 
 input {
@@ -108,6 +135,7 @@ input {
   border-radius: 10px;
   font-size: 1.5rem;
   text-align: center;
+  inline-size: 100%;
 }
 
 input:focus {
@@ -122,12 +150,11 @@ input:focus {
   display: inline-flex;
 }
 
-/* TODO: pseudo element to the bottom interior with spikes like in button-reference image */
 button {
   all: unset;
   cursor: pointer;
   padding: 15px;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   background: linear-gradient(to top, var(--main-buttons) 75%, var(--main-buttons-gradient) 100%);
   color: var(--secondary-text);
   border-radius: 15px;
@@ -138,6 +165,10 @@ button {
   position: relative;
   --spike-width: 20px;
   --spike-height: 12px;
+
+  @media screen and (width > 850px) {
+    font-size: 1.3rem;
+  }
 }
 
 button::after {
@@ -177,18 +208,29 @@ button:hover::after {
 .secondary-bg {
   background: repeating-linear-gradient(to right, var(--secondary-background) 0px, var(--secondary-background) 5px, var(--secondary-background-gradient) 8px, var(--secondary-background-gradient) 100px);
   inline-size: 100%;
-  border: 3px solid var(--secondary-background);
-  border-radius: 10px;
-  min-block-size: 60vh;
+  border-block: 3px solid var(--secondary-background);
+  min-block-size: 75vh;
   display: flex;
   justify-content: center;
+
+  @media screen and (width > 850px) {
+    padding: 10px;
+    border: 5px solid var(--secondary-background);
+    border-radius: 10px;
+    min-block-size: 60vh;
+  }
 }
 
 .extra-bg {
   background: var(--main-buttons-border);
-  padding: 10px;
-  border: 5px solid var(--secondary-background);
-  border-radius: 10px;
+  padding-block: 10px;
+  border-block: 5px solid var(--secondary-background);
+
+  @media screen and (width > 850px) {
+    padding: 10px;
+    border: 5px solid var(--secondary-background);
+    border-radius: 10px;
+  }
 }
 
 .flexbox {
@@ -201,7 +243,7 @@ button:hover::after {
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto 1fr 1fr 1fr;
   padding: 20px;
   gap: 1rem;
   inline-size: 100%;
@@ -221,14 +263,22 @@ button:hover::after {
 }
 
 #correct-wrong-container {
-  inline-size: 100%;
+  inline-size: 130%;
+
+  @media screen and (width > 450px) {
+    inline-size: 100%;
+  }
 }
 
 #correct-wrong-img-01,
 #correct-wrong-img-02 {
-  block-size: 100%;
+  block-size: 50px;
   display: inline;
   position: absolute;
+
+  @media screen and (width > 850px) {
+    block-size: 100%;
+  }
 }
 
 #correct-wrong-img-01 {
@@ -240,9 +290,14 @@ button:hover::after {
 }
 
 h3 {
-  font-size: 2rem;
-  -webkit-text-stroke: 0.3px var(--main-buttons-hover-border);
+  font-size: 1.2rem;
+  -webkit-text-stroke: 0.1px var(--main-buttons-hover-border);
   font-family: mhFont2;
+
+  @media screen and (width > 850px) {
+    font-size: 2rem;
+    -webkit-text-stroke: 0.3px var(--main-buttons-hover-border);
+  }
 }
 
 #timer {
@@ -259,20 +314,48 @@ h3 {
   font-size: 1.2rem;
 }
 
+#submit-btn,
+#play-again-btn {
+  --submit-spike-width: 15px;
+  --submit-spike-height: 7px;
+}
+
+#submit-btn::after,
+#play-again-btn::after {
+  block-size: var(--submit-spike-height);
+  background: var(--main-buttons-border);
+  -webkit-mask-image: url('../svg-paths/svg-path.svg');
+  -webkit-mask-size: var(--submit-spike-width) var(--submit-spike-height);
+}
+
+#submit-btn:hover::after,
+#play-again-btn:hover::after {
+  background: var(--main-buttons-hover-border);
+}
+
 #error-message {
   font-size: 1rem;
 }
 
 #score-card {
-  inline-size: 100%;
-  min-block-size: 40vh;
-  border: 3px solid var(--secondary-background);
-  border-radius: 10px;
+  inline-size: 100vw;
+  min-block-size: 60vh;
+  border-block: 3px solid var(--secondary-background);
   background: var(--main-buttons-border);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   padding: 20px;
+
+  @media screen and (width > 425px) {
+    border: 3px solid var(--secondary-background);
+    border-radius: 10px;
+    inline-size: 100%;
+  }
+
+  @media screen and (width > 850px) {
+    min-block-size: 40vh;
+  }
 }
 
 #score-card h2 {
@@ -281,7 +364,11 @@ h3 {
   top: 0px;
   font-family: mhFont2;
   -webkit-text-stroke: 0.1px var(--secondary-background);
-  font-size: 5rem;
+  font-size: 2.3rem;
+
+  @media screen and (width > 850px) {
+    font-size: 3.5rem;
+  }
 }
 
 ul {
@@ -296,7 +383,7 @@ ul {
 }
 
 .visibility-hidden {
-  visibility: hidden;
+  visibility: visible;
 }
 
 .show-content {
