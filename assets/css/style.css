@@ -211,6 +211,10 @@ button {
   }
 }
 
+button:focus {
+  outline: none;
+}
+
 button::after {
   content: '';
   position: absolute;
