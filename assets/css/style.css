@@ -224,16 +224,32 @@ button::after {
   border-radius: 15px;
 }
 
-button:hover {
+@media (hover: hover) and (pointer: fine) {
+  button:hover {
+    background: linear-gradient(to top, var(--main-buttons-hover) 75%, var(--main-buttons-hover-gradient) 100%);
+    border: 3px solid var(--main-buttons-hover-border);
+  }
+
+  button:hover::after {
+    background: var(--main-buttons-hover-border);
+  }
+
+  .btn-border-wrapper:hover {
+    border: 2px solid var(--main-buttons-hover-border);
+    background: var(--main-buttons-hover-border);
+  }
+}
+
+button:active {
   background: linear-gradient(to top, var(--main-buttons-hover) 75%, var(--main-buttons-hover-gradient) 100%);
   border: 3px solid var(--main-buttons-hover-border);
 }
 
-button:hover::after {
+button:active::after {
   background: var(--main-buttons-hover-border);
 }
 
-.btn-border-wrapper:hover {
+.btn-border-wrapper:active {
   border: 2px solid var(--main-buttons-hover-border);
   background: var(--main-buttons-hover-border);
 }
