@@ -51,13 +51,19 @@ body {
 /* TODO: needs to be a little more readable? */
 h1 {
   font-family: mhFont;
-  font-size: 2.2rem;
+  font-size: 1.5rem;
   color: var(--primary-text);
   text-align: center;
-  text-shadow: 4px 4px 2px #616060;
-  -webkit-text-stroke: 0.3px var(--secondary-text);
+  -webkit-text-stroke: 0.3px var(--main-buttons-gradient);
   margin-block-end: 30px;
-  margin-block-start: 5px;
+  padding-block-start: 10px;
+  --spike-width: 50px;
+  --spike-height: 12px;
+  position: relative;
+
+  @media screen and (width > 360px) {
+    font-size: 2rem;
+  }
 
   @media screen and (width > 510px) {
     font-size: 3rem;
@@ -66,20 +72,45 @@ h1 {
   @media screen and (width > 850px) {
     font-size: 4rem;
     margin-block-end: 70px;
-    margin-block-start: 20px;
   }
+}
+
+h1::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--primary-text);
+  block-size: 130%;
+}
+
+h1::after {
+  content: '';
+  position: absolute;
+  inline-size: 100%;
+  block-size: var(--spike-height);
+  background: var(--primary-background);
+  left: 0;
+  -webkit-mask-image: url('../svg-paths/svg-path.svg');
+  -webkit-mask-size: var(--spike-width) var(--spike-height);
+  transform: rotate(0.5turn);
+  bottom: -30%;
 }
 
 h2 {
   background: var(--main-buttons-border);
   display: inline;
   padding: 10px;
-  font-size: 1.7rem;
+  font-size: 1.3rem;
   color: var(--secondary-text);
   -webkit-text-stroke: 0.25px var(--primary-background);
   border: 3px solid var(--secondary-background);
   border-radius: 10px;
   text-align: center;
+
+  @media screen and (width > 360px) {
+    font-size: 1.7rem;
+  }
 
   @media screen and (width > 850px) {
     font-size: 1.8rem;
@@ -158,7 +189,7 @@ button {
   all: unset;
   cursor: pointer;
   padding: 15px;
-  font-size: 1.3rem;
+  font-size: 1rem;
   background: linear-gradient(to top, var(--main-buttons) 75%, var(--main-buttons-gradient) 100%);
   color: var(--secondary-text);
   border-radius: 15px;
@@ -170,8 +201,12 @@ button {
   --spike-width: 20px;
   --spike-height: 12px;
 
-  @media screen and (width > 850px) {
+  @media screen and (width > 360px) {
     font-size: 1.3rem;
+  }
+
+  @media screen and (width > 850px) {
+    font-size: 1.5rem;
   }
 }
 
@@ -213,13 +248,9 @@ button:hover::after {
   background: repeating-linear-gradient(to right, var(--secondary-background) 0px, var(--secondary-background) 5px, var(--secondary-background-gradient) 8px, var(--secondary-background-gradient) 100px);
   inline-size: 100%;
   border-block: 3px solid var(--secondary-background);
-  min-block-size: 80vh;
+  min-block-size: 75vh;
   display: flex;
   justify-content: center;
-
-  @media screen and (width > 510px) {
-    min-block-size: 77vh;
-  }
 
   @media screen and (width > 850px) {
     padding: 10px;
@@ -233,6 +264,7 @@ button:hover::after {
   background: var(--main-buttons-border);
   padding-block: 10px;
   border-block: 5px solid var(--secondary-background);
+  margin-block-start: 40px;
 
   @media screen and (width > 850px) {
     padding: 10px;
