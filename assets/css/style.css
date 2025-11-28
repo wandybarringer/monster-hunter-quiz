@@ -388,6 +388,7 @@ h3 {
   flex-direction: column;
   justify-content: flex-start;
   padding: 20px;
+  margin-block-end: 10px;
 
   @media screen and (width > 425px) {
     border: 3px solid var(--secondary-background);
@@ -416,8 +417,16 @@ h3 {
 ul {
   list-style: none;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   color: var(--secondary-text);
+
+  @media screen and (width > 850px) {
+    font-size: 1.5rem;
+  }
+}
+
+li {
+  line-height: 1.6;
 }
 
 .hide-content {
@@ -430,4 +439,10 @@ ul {
 
 .show-content {
   display: block;
+}
+
+.highlight-score {
+  color: var(--primary-text);
+  border: 2px dashed var(--primary-text);
+  border-radius: 10px;
 }

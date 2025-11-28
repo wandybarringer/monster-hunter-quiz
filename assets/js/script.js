@@ -347,6 +347,7 @@ var correctWrongImg02El = document.querySelector('#correct-wrong-img-02');
 var correctWrongContainerEl = document.querySelector('#correct-wrong-container');
 var playAgainBtnEl = document.querySelector('#play-again-btn');
 var defenseDownEl = document.querySelector('#defense-down-img');
+var scoreMsgEl = document.querySelector('#score-msg');
 
 var timeLeft = 120;
 var currentQuestion;
@@ -355,6 +356,7 @@ var questionCount = 0;
 var timerInterval;
 var userSuccess = 0;
 var userFail = 0;
+var highlightID;
 
 function startGame() {
   startBtnEl.addEventListener('click', function () {
@@ -453,28 +455,55 @@ function handleScoreSubmission() {
     event.preventDefault();
     var nameValue = nameInputEl.value;
     if (nameValue === '') {
-      console.log(nameValue);
       errorMsgEl.setAttribute('style', 'visibility: visible;');
     } else {
-      localStorage.setItem('answeredCorrectly', userSuccess);
-      localStorage.setItem('answeredIncorrectly', userFail);
-      localStorage.setItem('userName', nameValue);
-      renderLastScore();
+      var uniqueID = Date.now();
+      var newScore = {
+        name: nameValue,
+        correct: userSuccess,
+        incorrect: userFail,
+        id: uniqueID,
+      };
+      var scores = JSON.parse(localStorage.getItem('highScores')) || [];
+      scores.push(newScore);
+      localStorage.setItem('highScores', JSON.stringify(scores));
+      highlightID = uniqueID;
+      renderScores(window.highlightID);
       nameEntryEl.setAttribute('class', 'hide-content');
       scoreBoardEl.setAttribute('class', 'flexbox');
       playAgain();
       nameInputEl.value = '';
     }
+
+    if (userFail > userSuccess) {
+      scoreMsgEl.textContent = 'Better luck next time!';
+    } else if (userSuccess === 0) {
+      scoreMsgEl.textContent = 'Hmmmmm...';
+    } else if (userSuccess > userFail + 10) {
+      scoreMsgEl.textContent = 'WOW! You’re amazing!';
+    } else {
+      scoreMsgEl.textContent = 'Well done scholar!';
+    }
   });
 }
 
-function renderLastScore() {
-  var answeredCorrectly = localStorage.getItem('answeredCorrectly');
-  var answeredIncorrectly = localStorage.getItem('answeredIncorrectly');
-  var lastUserName = localStorage.getItem('userName');
-  var newScore = document.createElement('li');
-  newScore.textContent = lastUserName + ' | ' + answeredCorrectly + ' correct | ' + answeredIncorrectly + ' wrong';
-  scoreListEl.appendChild(newScore);
+function renderScores() {
+  scoreListEl.innerHTML = '';
+  var scores = JSON.parse(localStorage.getItem('highScores')) || [];
+  scores.sort(function (a, b) {
+    return b.correct - a.correct;
+  });
+  // var highlightID = highlightID || null;
+  for (var i = 0; i < scores.length; i++) {
+    var score = scores[i];
+    var newScore = document.createElement('li');
+    if (score.id === highlightID) {
+      newScore.classList.add('highlight-score');
+    }
+    newScore.textContent = score.name + ' | ' + score.correct + ' correct | ' + score.incorrect + ' wrong';
+    scoreListEl.appendChild(newScore);
+  }
+  // highlightID = null;
 }
 
 function endGame() {
@@ -833,3 +862,4 @@ function playAgain() {
 
 startGame();
 handleScoreSubmission();
+renderScores();
