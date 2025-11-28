@@ -23,13 +23,18 @@
             </div>
 
             <div id="questions-and-answers" class="hide-content">
-              <div id="correct-wrong-container" class="hide-content">
+              <div id="correct-wrong-container">
                 <img id="correct-wrong-img-01" src="" alt="" />
-                <h3 id="correct-wrong" class="show-content"></h3>
+                <h3 id="correct-wrong"></h3>
                 <img id="correct-wrong-img-02" src="" alt="" />
               </div>
               <!-- TODO: container for timer to show defense down icon when time is lost -->
-              <p id="timer">120</p>
+
+              <div class="timer-flex-layout">
+                <img src="assets/images/DefenseDn02.png" alt="" id="defense-down-img" class="hide-content" />
+                <p id="timer">120</p>
+              </div>
+
               <h2 id="question"></h2>
               <div class="btn-border-wrapper"><button id="answer-b"></button></div>
               <div class="btn-border-wrapper"><button id="answer-a"></button></div>

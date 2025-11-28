@@ -31,6 +31,10 @@
   --main-buttons-hover: #fedd51;
   --main-buttons-hover-gradient: #f7fbeb;
   --main-buttons-hover-border: #f19556;
+  --correct: #5ffe51;
+  --correct-border: #42b442;
+  --wrong: #fe5751;
+  --wrong-border: #ac4040;
 }
 
 body {
@@ -209,9 +213,13 @@ button:hover::after {
   background: repeating-linear-gradient(to right, var(--secondary-background) 0px, var(--secondary-background) 5px, var(--secondary-background-gradient) 8px, var(--secondary-background-gradient) 100px);
   inline-size: 100%;
   border-block: 3px solid var(--secondary-background);
-  min-block-size: 75vh;
+  min-block-size: 80vh;
   display: flex;
   justify-content: center;
+
+  @media screen and (width > 510px) {
+    min-block-size: 77vh;
+  }
 
   @media screen and (width > 850px) {
     padding: 10px;
@@ -243,16 +251,21 @@ button:hover::after {
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto 1fr 1fr 1fr;
-  padding: 20px;
+
+  grid-template-rows: auto auto auto auto 1fr;
+  padding: 10px;
   gap: 1rem;
   inline-size: 100%;
+
+  @media screen and (width > 850px) {
+    padding: 20px;
+    grid-template-rows: auto 1fr 1fr 1fr;
+  }
 }
 
-.grid-el {
-  background: linear-gradient(to top, var(--main-buttons-hover) 75%, var(--main-buttons-hover-gradient) 100%);
-  border: 3px solid var(--main-buttons-hover-border);
-  border-radius: 10px;
+.grid-el-correct,
+.grid-el-wrong {
+  border-radius: 100px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -262,12 +275,28 @@ button:hover::after {
   padding: 10px;
 }
 
+.grid-el-correct {
+  background: linear-gradient(to top, var(--correct) 75%, var(--main-buttons-hover-gradient) 100%);
+  border: 3px solid var(--correct-border);
+}
+
+.grid-el-wrong {
+  background: linear-gradient(to top, var(--wrong) 75%, var(--main-buttons-hover-gradient) 100%);
+  border: 3px solid var(--wrong-border);
+}
+
 #correct-wrong-container {
   inline-size: 130%;
+  scale: 0;
+  transition: scale 250ms ease;
 
   @media screen and (width > 450px) {
     inline-size: 100%;
   }
+}
+
+#correct-wrong-container.is-visible {
+  scale: 1;
 }
 
 #correct-wrong-img-01,
@@ -282,21 +311,34 @@ button:hover::after {
 }
 
 #correct-wrong-img-01 {
-  left: 0;
+  left: 5px;
 }
 
 #correct-wrong-img-02 {
-  right: 0;
+  right: 5px;
 }
 
 h3 {
   font-size: 1.2rem;
-  -webkit-text-stroke: 0.1px var(--main-buttons-hover-border);
+  font-weight: bold;
+  -webkit-text-stroke: 0.1px black;
   font-family: mhFont2;
 
   @media screen and (width > 850px) {
     font-size: 2rem;
-    -webkit-text-stroke: 0.3px var(--main-buttons-hover-border);
+  }
+}
+
+.timer-flex-layout {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.timer-flex-layout img {
+  block-size: 50px;
+
+  @media screen and (width > 850px) {
+    block-size: 70px;
   }
 }
 
@@ -383,7 +425,7 @@ ul {
 }
 
 .visibility-hidden {
-  visibility: visible;
+  visibility: hidden;
 }
 
 .show-content {

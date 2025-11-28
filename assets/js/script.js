@@ -346,6 +346,7 @@ var correctWrongImg01El = document.querySelector('#correct-wrong-img-01');
 var correctWrongImg02El = document.querySelector('#correct-wrong-img-02');
 var correctWrongContainerEl = document.querySelector('#correct-wrong-container');
 var playAgainBtnEl = document.querySelector('#play-again-btn');
+var defenseDownEl = document.querySelector('#defense-down-img');
 
 var timeLeft = 120;
 var currentQuestion;
@@ -395,15 +396,22 @@ function handleAnswerClick(event) {
 
   var element = event.target;
 
+  correctWrongContainerEl.classList.remove('visibility-hidden');
+
+  setTimeout(function () {
+    correctWrongContainerEl.classList.add('is-visible');
+  }, 0);
+
   if (element.textContent === currentQuestion.correctAnswer) {
-    correctWrongContainerEl.setAttribute('class', 'grid-el');
+    correctWrongContainerEl.classList.add('grid-el-correct');
     correctWrongImg01El.setAttribute('src', 'assets/images/HappyFelyne.png');
     correctWrongImg02El.setAttribute('src', 'assets/images/HappyFelyne.png');
     correctWrongEl.textContent = 'CORRECT!';
     questionCount++;
     userSuccess++;
   } else {
-    correctWrongContainerEl.setAttribute('class', 'grid-el');
+    correctWrongContainerEl.classList.add('grid-el-wrong');
+    defenseDownEl.setAttribute('class', 'show-content');
     correctWrongImg01El.setAttribute('src', 'assets/images/KOdFelyne1.png');
     correctWrongImg02El.setAttribute('src', 'assets/images/KOdFelyne1.png');
     correctWrongEl.textContent = 'WRONG!';
@@ -413,7 +421,13 @@ function handleAnswerClick(event) {
   }
 
   setTimeout(function () {
-    correctWrongContainerEl.setAttribute('class', 'hide-content');
+    correctWrongContainerEl.classList.remove('is-visible');
+    correctWrongContainerEl.classList.remove('grid-el-correct', 'grid-el-wrong');
+    defenseDownEl.setAttribute('class', 'hide-content');
+    correctWrongImg01El.setAttribute('src', '');
+    correctWrongImg02El.setAttribute('src', '');
+    correctWrongEl.textContent = '';
+
     endGame();
     loadQuestion();
     answerAEl.disabled = false;
