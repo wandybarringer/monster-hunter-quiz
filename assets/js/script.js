@@ -514,8 +514,6 @@ function endGame() {
 }
 
 function resetGame() {
-  // !!!! REMOVE BEFORE LAUNCHING
-  // scoreListEl.innerHTML = '';
   timeLeft = 120;
   questionCount = 0;
   questions = [
