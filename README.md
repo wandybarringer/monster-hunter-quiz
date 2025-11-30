@@ -25,11 +25,11 @@ Monster Hunter Quiz is a fast-paced, browser-based trivia game built with HTML, 
 ## Project Structure
 
 monster-hunter-quiz/
-├── index.html ← main HTML page
-├── assets/ ← images or static assets
-├── style.css ← UI styling
-├── script.js ← quiz logic: timer, scoring, question flow, storage
-└── README.md ← documentation
+- index.html ← main HTML page
+- assets/ ← images or static assets
+- style.css ← UI styling
+- script.js ← quiz logic: timer, scoring, question flow, storage
+- README.md ← documentation
 
 ## Features
 
