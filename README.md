@@ -46,6 +46,7 @@ monster-hunter-quiz/
 - Add a leaderboard view showing all saved scores
 - Support question pools loaded from JSON or an external source
 - Add a “review answers” screen after finishing
+- Randomly assign answers to different buttons 
 
 ---
 
